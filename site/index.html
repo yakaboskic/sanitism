@@ -143,7 +143,20 @@
   .tool h3 { font: 600 17px/1.3 var(--mono); margin: 0 0 4px; }
   .tool .kind { font-size: 14px; color: var(--accent); margin: 0 0 12px; }
   .tool p { margin: 0 0 16px; color: var(--muted); font-size: 15.5px; }
-  .tool .links { margin-top: auto; font-size: 15px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .tool .links { margin-top: auto; font-size: 15px; display: flex; gap: 8px 16px; flex-wrap: wrap; }
+  .tool .links .demo { flex-basis: 100%; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .tool .links .demo:hover { text-decoration: underline; }
+  .start .cmd-label { margin: 14px 0 6px; font: 600 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  pre.cmd {
+    margin: 0 0 12px;
+    padding: 12px 14px;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 8px;
+    font: 13.5px/1.5 var(--mono);
+    overflow-x: auto;
+    white-space: pre;
+  }
 
   ol.rules {
     list-style: none;
@@ -224,6 +237,7 @@
         <p class="kind">Papers, proposals, reports</p>
         <p>One markdown source becomes a LaTeX PDF, a Word document and an interactive HTML viewer where every number opens its provenance.</p>
         <div class="links">
+          <a class="demo" href="https://document.sanitism.dev/">See a paper and a proposal &rarr;</a>
           <a href="https://github.com/yakaboskic/document-sanity">Tool</a>
           <a href="https://github.com/yakaboskic/document-sanity-template">Template</a>
         </div>
@@ -233,6 +247,7 @@
         <p class="kind">Talks and blog posts</p>
         <p>One manifest feeds Slidev decks, VitePress posts and PowerPoint with playable manim scenes. A new version of a talk is a folder.</p>
         <div class="links">
+          <a class="demo" href="https://presentation.sanitism.dev/">See a deck and its blog post &rarr;</a>
           <a href="https://github.com/yakaboskic/presentation-sanity">Tool</a>
           <a href="https://github.com/yakaboskic/presentation-sanity-template">Template</a>
         </div>
@@ -254,8 +269,14 @@
   <section>
     <h2>Start one</h2>
     <div class="start">
-      <p>Today: open a template and click <strong>Use this template</strong> &mdash; <a href="https://github.com/yakaboskic/document-sanity-template">for documents</a> or <a href="https://github.com/yakaboskic/presentation-sanity-template">for presentations</a>.</p>
-      <p>Soon, without git: <code>uvx sanitism new paper</code> &middot; <code>uvx sanitism new talk</code></p>
+      <p>Without git: one command copies the template into a new folder (needs <a href="https://docs.astral.sh/uv/">uv</a>).</p>
+      <p class="cmd-label">Papers and proposals</p>
+<pre class="cmd">uvx --from git+https://github.com/yakaboskic/document-sanity \
+    document-sanity init my-paper</pre>
+      <p class="cmd-label">Talks and blog posts</p>
+<pre class="cmd">uvx --from git+https://github.com/yakaboskic/presentation-sanity \
+    presentation-sanity init my-talks</pre>
+      <p>With git: open a template and click <strong>Use this template</strong> &mdash; <a href="https://github.com/yakaboskic/document-sanity-template">for documents</a> or <a href="https://github.com/yakaboskic/presentation-sanity-template">for presentations</a>.</p>
     </div>
   </section>
 

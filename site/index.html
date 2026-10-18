@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23172033'/%3E%3Crect x='5' y='17' width='22' height='8' fill='%23ffe14d'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23ffffff'%3Es%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --paper: #f5f7f6;      /* the page */
@@ -70,38 +70,35 @@
   code, kbd, pre { font-family: var(--mono); }
   p code { font-size: 0.84em; background: var(--source); padding: 0.08em 0.32em; border-radius: 4px; }
 
-  .wrap { max-width: 72rem; margin: 0 auto; padding: 0 16px; }
+  .wrap { max-width: 80rem; margin: 0 auto; padding: 0 16px; }
   @media (min-width: 760px) { .wrap { padding: 0 40px; } }
-  @media (min-width: 1100px) { .wrap { padding: 0 96px; } }
+  @media (min-width: 1100px) { .wrap { padding: 0 64px; } }
 
-  /* The source shows through: each heading hangs its markdown marker in the margin. */
-  h1, h2, h3 { font-weight: 500; letter-spacing: -0.012em; position: relative; }
-  h1::before, h2::before, h3::before {
-    font: 400 0.42em/1 var(--mono);
-    color: var(--thread);
-    opacity: 0.75;
-    letter-spacing: 0;
-    margin-right: 0.5em;
-    vertical-align: 0.42em;
-  }
-  h1::before { content: "#"; }
-  h2::before { content: "##"; }
-  h3::before { content: "###"; }
-  @media (min-width: 1100px) {
-    h1::before, h2::before, h3::before {
-      position: absolute;
-      right: 100%;
-      top: 0.9em;
-      margin-right: 0.9rem;
-      vertical-align: baseline;
-    }
-  }
+  h1, h2, h3 { font-weight: 500; letter-spacing: -0.012em; }
 
   /* header */
   .top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 22px 0; }
   .brand { font: 600 1.25rem/1 var(--serif); color: var(--ink); text-decoration: none; }
   .brand span { color: #172033; background: linear-gradient(transparent 8%, var(--marker) 8%, var(--marker) 94%, transparent 94%); padding: 0 0.16em; border-radius: 2px; }
-  .top nav { display: flex; gap: 20px; font-size: 1rem; }
+  .top nav { display: flex; align-items: baseline; gap: 20px; font-size: 1rem; }
+  .menu { position: relative; }
+  .menu summary { list-style: none; cursor: pointer; color: var(--muted); }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu summary::after { content: ""; display: inline-block; width: 0.38em; height: 0.38em; margin-left: 0.4em; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-0.2em) rotate(45deg); }
+  .menu[open] summary::after { transform: translateY(0.05em) rotate(225deg); }
+  .menu summary:hover, .menu[open] summary { color: var(--ink); }
+  .menu ul {
+    position: absolute; right: 0; top: calc(100% + 10px); z-index: 20;
+    list-style: none; margin: 0; padding: 6px;
+    min-width: 17rem;
+    background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(16, 21, 31, 0.16);
+  }
+  .menu li a { display: grid; gap: 1px; padding: 10px 12px; border-radius: 7px; text-decoration: none; color: #172033; }
+  .menu li a:hover, .menu li a:focus-visible { background: var(--source); }
+  .menu li code { font-size: 0.92rem; color: #2563a8; }
+  .menu li span { font-size: 0.92rem; color: #566175; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .menu li a:hover { background: #eef2f7; } }
   .top nav a { color: var(--muted); text-decoration: none; }
   .top nav a:hover { color: var(--ink); }
   @media (max-width: 560px) { .top nav a.opt { display: none; } }
@@ -109,10 +106,60 @@
   /* hero */
   .hero { padding: 40px 0 28px; }
   h1 {
-    font-size: clamp(2.6rem, 6.6vw, 4.9rem);
-    line-height: 1.02;
-    margin: 0 0 22px;
-    max-width: 15ch;
+    font-size: clamp(2.5rem, 4.4vw, 4.4rem);
+    line-height: 1.06;
+    margin: 0 0 24px;
+    text-wrap: pretty;
+  }
+
+  /* "autists": the one loud word, in foil that drifts, with a few sparkles */
+  .glitter {
+    position: relative;
+    display: inline-block;
+    font-family: "Bricolage Grotesque", var(--serif);
+    font-weight: 800;
+    font-size: 1.06em;
+    letter-spacing: -0.035em;
+    padding: 0 0.05em 0.06em;
+    margin: 0 -0.02em;
+    background-image: linear-gradient(100deg,
+      #e8318b, #ff7a1a 12%, #f2b600 24%, #12a7c8 37%, #6d4aff 50%,
+      #e8318b 62%, #ff7a1a 74%, #f2b600 86%, #12a7c8 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 0.04em 0.1em rgba(232, 49, 139, 0.18));
+    animation: foil 7s linear infinite;
+  }
+  @keyframes foil { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+  .sparkle {
+    position: absolute;
+    width: 0.42em;
+    height: 0.42em;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c.6 6.2 5.8 11.4 12 12-6.2.6-11.4 5.8-12 12-.6-6.2-5.8-11.4-12-12C6.2 11.4 11.4 6.2 12 0z' fill='%23ffd23f'/%3E%3C/svg%3E") center / contain no-repeat;
+    transform: scale(0);
+    animation: twinkle 2.6s ease-in-out infinite;
+  }
+  .sparkle.s1 { top: -0.2em; left: -0.22em; animation-delay: 0s; }
+  .sparkle.s2 { top: -0.04em; right: -0.28em; width: 0.32em; height: 0.32em; animation-delay: 0.9s; }
+  .sparkle.s3 { bottom: -0.06em; left: 40%; width: 0.26em; height: 0.26em; animation-delay: 1.7s; }
+  .sparkle.s4 { top: -0.3em; left: 64%; width: 0.24em; height: 0.24em; animation-delay: 1.3s; filter: hue-rotate(160deg); }
+  @keyframes twinkle {
+    0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+    45% { transform: scale(1) rotate(80deg); opacity: 1; }
+    60% { transform: scale(0.85) rotate(100deg); opacity: 0.9; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glitter { animation: none; background-position: 30% 50%; }
+    .sparkle { animation: none; transform: scale(0.8); opacity: 0.9; }
+    .sparkle.s3, .sparkle.s4 { display: none; }
+  }
+  @media (forced-colors: active) {
+    .glitter { -webkit-text-fill-color: currentColor; color: CanvasText; background: none; filter: none; }
+    .sparkle { display: none; }
   }
   .lede { font-size: 1.32rem; line-height: 1.5; color: var(--muted); max-width: 34rem; margin: 0 0 30px; }
   .lede strong { color: var(--ink); font-weight: 500; }
@@ -278,13 +325,19 @@
     <nav aria-label="Site">
       <a class="opt" href="#documents">Documents</a>
       <a class="opt" href="#presentations">Presentations</a>
-      <a href="https://github.com/yakaboskic">GitHub</a>
+      <details class="menu">
+        <summary>GitHub</summary>
+        <ul>
+          <li><a href="https://github.com/yakaboskic/document-sanity"><code>document-sanity</code><span>papers, proposals and reports</span></a></li>
+          <li><a href="https://github.com/yakaboskic/presentation-sanity"><code>presentation-sanity</code><span>talks and their blog posts</span></a></li>
+        </ul>
+      </details>
     </nav>
   </header>
 
   <main>
     <div class="hero">
-      <h1>Built for autists to communicate their work, sanely.</h1>
+      <h1>Built for <span class="glitter">autists<span class="sparkle s1" aria-hidden="true"></span><span class="sparkle s2" aria-hidden="true"></span><span class="sparkle s3" aria-hidden="true"></span><span class="sparkle s4" aria-hidden="true"></span></span> to communicate their work, sanely.</h1>
       <p class="lede"><strong>Autistic on the inside:</strong> one manifest, and every number traced to the script that made it. <strong>Sanitistic on the outside:</strong> a paper, a deck or a Word file your co-authors can simply read.</p>
       <div class="actions">
         <a class="btn primary" href="#start">Start a project</a>
@@ -452,6 +505,16 @@
     video.addEventListener("play", sync);
     video.addEventListener("pause", sync);
     sync();
+  })();
+
+  // The GitHub menu closes on an outside click or Escape.
+  (function () {
+    var menu = document.querySelector("details.menu");
+    if (!menu) return;
+    document.addEventListener("click", function (e) { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); }
+    });
   })();
 
   // Numbers that know where they came from.

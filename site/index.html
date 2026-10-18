@@ -4,287 +4,496 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sanitism</title>
-<meta name="description" content="Built for autists to communicate their work, sanely. Papers, proposals and talks from one manifest, with every number traced to its source.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23d9480f'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Built for autists to communicate their work, sanely. Papers, proposals and talks from one manifest, with every number traced to the script that made it.">
+<meta property="og:title" content="Sanitism">
+<meta property="og:description" content="Built for autists to communicate their work, sanely.">
+<meta property="og:image" content="https://sanitism.dev/media/one-number-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23172033'/%3E%3Crect x='5' y='17' width='22' height='8' fill='%23ffe14d'/%3E%3Ctext x='16' y='24' font-family='Georgia,serif' font-size='20' text-anchor='middle' fill='%23ffffff'%3Es%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf8f4;
-    --surface: #ffffff;
-    --ink: #1c1b19;
-    --muted: #6b675f;
-    --line: #e4dfd5;
-    --accent: #d9480f;
-    --code-bg: #1f1d1a;
-    --code-ink: #e9e4da;
-    --code-key: #f4a261;
-    --code-dim: #8f897d;
-    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --paper: #f5f7f6;      /* the page */
+    --sheet: #ffffff;      /* outside: what readers get */
+    --source: #eef2f7;     /* inside: what you write */
+    --grid: #dfe6ef;
+    --ink: #172033;
+    --muted: #566175;
+    --rule: #d6dde6;
+    --thread: #2563a8;     /* ballpoint blue: links, markdown markers */
+    --marker: #ffe14d;     /* highlighter: a number that knows its source */
+    --canvas: #172033;     /* the reel and the terminal */
+    --canvas-ink: #e6eaf0;
+    --canvas-muted: #8d9ab0;
+    --serif: "Newsreader", "Iowan Old Style", Charter, Georgia, serif;
+    --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+    --measure: 40rem;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #141311;
-      --surface: #1d1b18;
-      --ink: #ece7de;
-      --muted: #a39d92;
-      --line: #2f2c27;
-      --accent: #ff8a4c;
-      --code-bg: #0e0d0c;
+      --paper: #10151f;
+      --source: #182133;
+      --grid: #222d42;
+      --ink: #e6eaf0;
+      --muted: #9aa5b8;
+      --rule: #273246;
+      --thread: #8db8f2;
+      --canvas: #172033;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #141311;
-    --surface: #1d1b18;
-    --ink: #ece7de;
-    --muted: #a39d92;
-    --line: #2f2c27;
-    --accent: #ff8a4c;
-    --code-bg: #0e0d0c;
+    --paper: #10151f;
+    --source: #182133;
+    --grid: #222d42;
+    --ink: #e6eaf0;
+    --muted: #9aa5b8;
+    --rule: #273246;
+    --thread: #8db8f2;
+    --canvas: #172033;
   }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--bg);
+    background: var(--paper);
     color: var(--ink);
-    font: 17px/1.6 var(--sans);
+    font: 400 1.1875rem/1.62 var(--serif);
+    font-optical-sizing: auto;
   }
-  a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px; }
-  a:hover { color: var(--accent); }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
-  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+  img, video { display: block; max-width: 100%; height: auto; }
+  a { color: var(--thread); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--thread); outline-offset: 3px; border-radius: 3px; }
+  code, kbd, pre { font-family: var(--mono); }
+  p code { font-size: 0.84em; background: var(--source); padding: 0.08em 0.32em; border-radius: 4px; }
 
-  header { padding: 72px 0 40px; }
-  .wordmark {
-    font: 600 13px/1 var(--mono);
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 20px;
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 760px) { .wrap { padding: 0 40px; } }
+  @media (min-width: 1100px) { .wrap { padding: 0 96px; } }
+
+  /* The source shows through: each heading hangs its markdown marker in the margin. */
+  h1, h2, h3 { font-weight: 500; letter-spacing: -0.012em; position: relative; }
+  h1::before, h2::before, h3::before {
+    font: 400 0.42em/1 var(--mono);
+    color: var(--thread);
+    opacity: 0.75;
+    letter-spacing: 0;
+    margin-right: 0.5em;
+    vertical-align: 0.42em;
   }
+  h1::before { content: "#"; }
+  h2::before { content: "##"; }
+  h3::before { content: "###"; }
+  @media (min-width: 1100px) {
+    h1::before, h2::before, h3::before {
+      position: absolute;
+      right: 100%;
+      top: 0.9em;
+      margin-right: 0.9rem;
+      vertical-align: baseline;
+    }
+  }
+
+  /* header */
+  .top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 22px 0; }
+  .brand { font: 600 1.25rem/1 var(--serif); color: var(--ink); text-decoration: none; }
+  .brand span { color: #172033; background: linear-gradient(transparent 8%, var(--marker) 8%, var(--marker) 94%, transparent 94%); padding: 0 0.16em; border-radius: 2px; }
+  .top nav { display: flex; gap: 20px; font-size: 1rem; }
+  .top nav a { color: var(--muted); text-decoration: none; }
+  .top nav a:hover { color: var(--ink); }
+  @media (max-width: 560px) { .top nav a.opt { display: none; } }
+
+  /* hero */
+  .hero { padding: 40px 0 28px; }
   h1 {
-    font: 400 clamp(34px, 6vw, 60px)/1.08 var(--serif);
-    letter-spacing: -.01em;
-    margin: 0 0 18px;
-    max-width: 16ch;
-  }
-  .sub { font-size: 19px; color: var(--muted); margin: 0; }
-  .sub em { font-style: normal; color: var(--ink); }
-
-  /* inside → outside */
-  .split {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    overflow: hidden;
-    margin: 24px 0 72px;
-  }
-  @media (min-width: 820px) { .split { grid-template-columns: 1.05fr 1fr; } }
-  .pane { padding: 22px 24px 26px; }
-  .label {
-    font: 600 11px/1.5 var(--mono);
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    margin: 0 0 14px;
-  }
-  .inside { background: var(--code-bg); color: var(--code-ink); }
-  .inside .label { color: var(--code-dim); }
-  .inside pre {
-    margin: 0;
-    font: 14px/1.65 var(--mono);
-    white-space: pre;
-    overflow-x: auto;
-  }
-  .k { color: var(--code-key); }
-  .c { color: var(--code-dim); }
-  .outside { background: var(--surface); display: flex; flex-direction: column; }
-  .outside .label { color: var(--muted); }
-  .paper {
-    font: 20px/1.55 var(--serif);
-    margin: auto 0;
-  }
-  .num {
-    border-bottom: 2px solid var(--accent);
-    padding: 0 1px;
-    font-variant-numeric: tabular-nums;
-  }
-  .trace {
-    margin-top: 18px;
-    font: 13px/1.5 var(--mono);
-    color: var(--muted);
-    border-left: 2px solid var(--accent);
-    padding-left: 12px;
-  }
-
-  h2 {
-    font: 400 28px/1.2 var(--serif);
+    font-size: clamp(2.6rem, 6.6vw, 4.9rem);
+    line-height: 1.02;
     margin: 0 0 22px;
+    max-width: 15ch;
   }
-  section { margin-bottom: 72px; }
+  .lede { font-size: 1.32rem; line-height: 1.5; color: var(--muted); max-width: 34rem; margin: 0 0 30px; }
+  .lede strong { color: var(--ink); font-weight: 500; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+  .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 999px;
+    font: 500 1.05rem/1.2 var(--serif);
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn.primary { background: var(--ink); color: var(--paper); }
+  .btn:hover { text-decoration: none; background: var(--ink); color: var(--paper); }
 
-  .tools {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .reel { margin: 0; }
+  .reel .frame { position: relative; border-radius: 14px; overflow: hidden; background: var(--canvas); aspect-ratio: 16 / 9; }
+  .reel video { width: 100%; height: 100%; object-fit: cover; }
+  .reel .toggle {
+    position: absolute; right: 12px; bottom: 12px;
+    font: 500 0.85rem/1 var(--mono);
+    color: var(--canvas-ink);
+    background: rgba(23, 32, 51, 0.72);
+    border: 1px solid rgba(230, 234, 240, 0.28);
+    border-radius: 999px;
+    padding: 7px 12px;
+    cursor: pointer;
   }
-  @media (min-width: 720px) { .tools { grid-template-columns: repeat(2, 1fr); } }
-  .tool {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
+  figcaption { font-size: 1rem; color: var(--muted); margin-top: 12px; max-width: var(--measure); }
+
+  /* sections */
+  section { padding: 76px 0 8px; }
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.5rem); line-height: 1.12; margin: 0 0 14px; }
+  h3 { font-size: 1.5rem; line-height: 1.2; margin: 0 0 10px; }
+  .intro { max-width: var(--measure); margin: 0 0 34px; }
+  .prose { max-width: var(--measure); }
+  .prose p { margin: 0 0 14px; }
+
+  /* outside: sheets that hold figures and screenshots */
+  .sheet {
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px;
+    overflow-x: auto;
   }
-  .tool h3 { font: 600 17px/1.3 var(--mono); margin: 0 0 4px; }
-  .tool .kind { font-size: 14px; color: var(--accent); margin: 0 0 12px; }
-  .tool p { margin: 0 0 16px; color: var(--muted); font-size: 15.5px; }
-  .tool .links { margin-top: auto; font-size: 15px; display: flex; gap: 8px 16px; flex-wrap: wrap; }
-  .tool .links .demo { flex-basis: 100%; font-weight: 600; color: var(--accent); text-decoration: none; }
-  .tool .links .demo:hover { text-decoration: underline; }
-  .start .cmd-label { margin: 14px 0 6px; font: 600 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-  pre.cmd {
+  .sheet img.figure { min-width: 620px; width: 100%; }
+  .scroll-hint { display: none; font-size: 0.9rem; color: var(--muted); margin: 8px 0 0; }
+  @media (max-width: 680px) { .scroll-hint { display: block; } }
+  .shot { margin: 0; }
+  .shot img { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); }
+  .shot figcaption { font-size: 0.95rem; }
+
+  /* two ways in */
+  .ways { display: grid; gap: 40px; margin-top: 40px; }
+  @media (min-width: 900px) { .ways { grid-template-columns: 1fr 1fr; gap: 48px; } }
+  .ways > div { min-width: 0; }
+  .ways p { margin: 0 0 18px; max-width: 34rem; }
+
+  /* inside: the terminal and the house rules */
+  .term {
+    background: var(--canvas);
+    color: var(--canvas-ink);
+    border-radius: 10px;
+    padding: 16px 18px;
     margin: 0 0 12px;
-    padding: 12px 14px;
-    background: var(--code-bg);
-    color: var(--code-ink);
-    border-radius: 8px;
-    font: 13.5px/1.5 var(--mono);
+    font: 400 0.84rem/1.6 var(--mono);
     overflow-x: auto;
     white-space: pre;
   }
+  .term .p { color: var(--canvas-muted); user-select: none; }
+  .term .c { color: var(--canvas-muted); }
+  .term .ok { color: #9fc0ec; }
+  .note { font-size: 1rem; color: var(--muted); }
 
-  ol.rules {
-    list-style: none;
-    counter-reset: r;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    gap: 14px;
-  }
-  ol.rules li {
-    counter-increment: r;
-    display: grid;
-    grid-template-columns: 2.4em 1fr;
-    font: 21px/1.4 var(--serif);
-  }
-  ol.rules li::before {
-    content: counter(r, decimal-leading-zero);
-    font: 600 13px/2.2 var(--mono);
-    color: var(--accent);
-  }
-  ol.rules small { display: block; font: 15px/1.5 var(--sans); color: var(--muted); margin-top: 2px; }
-
-  .start {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 12px;
+  .grid-paper {
+    background-color: var(--source);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 22px 22px;
+    border-radius: 10px;
     padding: 22px 24px;
+    overflow-x: auto;
   }
-  .start p { margin: 0 0 10px; }
-  .start p:last-child { margin: 0; }
-  code { font: 14.5px var(--mono); background: var(--line); padding: 2px 6px; border-radius: 5px; }
+  .rules {
+    margin: 0;
+    font: 400 0.95rem/1.75 var(--mono);
+    white-space: pre-wrap;
+    color: var(--ink);
+  }
+  .rules .k { color: var(--thread); }
+  .rules .c { color: var(--muted); font-style: italic; }
+
+  /* packages */
+  .pkg { margin-top: 56px; }
+  .pkg:first-of-type { margin-top: 8px; }
+  .pkg .prose { margin-bottom: 26px; }
+  .shots { display: grid; gap: 24px; margin-top: 24px; }
+  @media (min-width: 860px) { .shots.two { grid-template-columns: 1fr 1fr; } }
+  .links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 20px; font-size: 1.05rem; }
+
+  /* agent */
+  .asks { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; max-width: 46rem; }
+  .asks li { display: grid; gap: 4px; }
+  @media (min-width: 760px) { .asks li { grid-template-columns: 18rem 1fr; gap: 20px; align-items: baseline; } }
+  .asks code { font-size: 0.92rem; color: var(--thread); }
+
+  /* numbers that know where they came from */
+  .num {
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    color: #172033;
+    background: linear-gradient(transparent 10%, var(--marker) 10%, var(--marker) 92%, transparent 92%);
+    border: 0;
+    padding: 0 0.14em;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+  .num:hover, .num[aria-expanded="true"] { box-shadow: inset 0 -2px 0 #172033; }
+  .prov {
+    position: absolute;
+    z-index: 10;
+    max-width: min(26rem, calc(100vw - 32px));
+    background: var(--sheet);
+    color: #172033;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--marker);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font: 400 0.8rem/1.55 var(--mono);
+    box-shadow: 0 10px 30px rgba(16, 21, 31, 0.18);
+  }
+  .prov dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; }
+  .prov dt { color: #566175; }
+  .prov dd { margin: 0; overflow-wrap: anywhere; }
 
   footer {
-    border-top: 1px solid var(--line);
-    padding: 28px 0 48px;
+    margin-top: 96px;
+    border-top: 1px solid var(--rule);
+    padding: 28px 0 56px;
     color: var(--muted);
-    font-size: 14px;
+    font-size: 1rem;
     display: flex;
-    justify-content: space-between;
-    gap: 12px;
     flex-wrap: wrap;
+    gap: 12px 32px;
+    justify-content: space-between;
+  }
+  footer p { margin: 0; max-width: 40rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header>
-    <p class="wordmark">Sanitism</p>
-    <h1>Built for autists to communicate their work, sanely.</h1>
-    <p class="sub">Autistic on the inside. <em>Sanitistic on the outside.</em></p>
+  <header class="top">
+    <a class="brand" href="/"><span>Sanitism</span></a>
+    <nav aria-label="Site">
+      <a class="opt" href="#documents">Documents</a>
+      <a class="opt" href="#presentations">Presentations</a>
+      <a href="https://github.com/yakaboskic">GitHub</a>
+    </nav>
   </header>
 
-  <div class="split" aria-label="The same number, inside the repo and outside in the paper">
-    <div class="pane inside">
-      <p class="label">Inside &middot; manifest.yaml</p>
-<pre><span class="k">variables</span>:
-  <span class="k">num_samples</span>:
-    <span class="k">value</span>: 12453
-    <span class="k">format</span>: ","
-    <span class="k">source</span>: data/results.csv
-    <span class="k">command</span>: python scripts/fit.py
-    <span class="k">updated</span>: 2026-04-29
-<span class="c"># every number lives here, once</span></pre>
-    </div>
-    <div class="pane outside">
-      <p class="label">Outside &middot; the paper, the deck, the blog</p>
-      <p class="paper">After quality control we analyzed <span class="num">12,453</span> samples across four cohorts.</p>
-      <p class="trace">12,453 &larr; data/results.csv &larr; python scripts/fit.py</p>
-    </div>
-  </div>
+  <main>
+    <div class="hero">
+      <h1>Built for autists to communicate their work, sanely.</h1>
+      <p class="lede"><strong>Autistic on the inside:</strong> one manifest, and every number traced to the script that made it. <strong>Sanitistic on the outside:</strong> a paper, a deck or a Word file your co-authors can simply read.</p>
+      <div class="actions">
+        <a class="btn primary" href="#start">Start a project</a>
+        <a class="btn" href="https://document.sanitism.dev/manuscript/">Read a finished paper</a>
+      </div>
 
-  <section>
-    <h2>The packages</h2>
-    <div class="tools">
-      <article class="tool">
+      <figure class="reel">
+        <div class="frame">
+          <video id="reel" autoplay muted loop playsinline preload="auto" poster="media/one-number-poster.jpg"
+                 aria-label="Animation: a value in manifest.yaml and a sentence in docs/results.md build into LaTeX, PDF, Word, HTML, slides and a blog post. The value changes from 12,453 to 12,618 and every output updates.">
+            <source src="media/one-number.mp4" type="video/mp4">
+          </video>
+          <button class="toggle" id="reel-toggle" type="button" aria-controls="reel">Pause</button>
+        </div>
+        <figcaption>One number in <code>manifest.yaml</code>, six outputs. Edit it once and every output follows, because none of them holds a copy.</figcaption>
+      </figure>
+    </div>
+
+    <section id="start" aria-labelledby="start-h">
+      <h2 id="start-h">Two ways in</h2>
+      <p class="intro">Keep a whole project area in one repo, or just get a folder. Either way you end up with the same project: pinned to a release, ready to build, with an agent skill that already knows the conventions.</p>
+
+      <div class="sheet">
+        <img class="figure" src="figures/two-ways-in.svg" width="1007" height="375"
+             alt="A template repo leads two ways. Use this template on GitHub gives the project a repo with history, branches and pull requests. Running uvx init in a terminal gives a plain folder with no git. Both arrive at the same project: pyproject.toml pinned to a release, src/manuscript with manifest.yaml and docs, templates, and the agent skill in .claude/skills.">
+      </div>
+      <p class="scroll-hint">Scroll the figure sideways to see all of it.</p>
+
+      <div class="ways">
+        <div>
+          <h3>Keep it in git</h3>
+          <p>A repo per project area keeps every proposal, paper and talk about it together, reusing the same figures and numbers. Open a template, click <strong>Use this template</strong>, and name your repo.</p>
+          <figure class="shot">
+            <img src="shots/github-template.jpg" width="1400" height="1024" loading="lazy"
+                 alt="The document-sanity-template repository on GitHub, marked Public template, with its folders: .github/workflows, scripts, src, styles and templates, and files including AGENTS.md, Makefile, README.md, init.py and pyproject.toml.">
+            <figcaption>The document template on GitHub. There is <a href="https://github.com/yakaboskic/presentation-sanity-template">one for presentations</a> too.</figcaption>
+          </figure>
+        </div>
+        <div>
+          <h3>Just give me a folder</h3>
+          <p>No repo, no history, nothing to fork. One command copies the template into a new folder, so you can start writing. Add <code>--git</code> if you change your mind. It needs <a href="https://docs.astral.sh/uv/">uv</a>.</p>
+<pre class="term" aria-label="Terminal session"><span class="p">$ </span>uvx --from git+https://github.com/yakaboskic/document-sanity \
+    document-sanity init my-paper
+
+  <span class="ok">→</span> my-paper  (from document-sanity-template@63537ec)
+    59 files written
+    documents: src/manuscript/, src/proposal/
+    agent skill: .claude/skills/document-sanity/
+
+  next:
+    cd my-paper
+    uv sync                        <span class="c"># commit the uv.lock it writes</span>
+    uv run document-sanity check   <span class="c"># every target, before you share</span></pre>
+          <p class="note">That run wrote <button class="num" type="button" data-label="files written by init" data-source="init's own summary line" data-command="uvx --from git+https://github.com/yakaboskic/document-sanity document-sanity init my-paper" data-updated="2026-10-18">59</button> files. For a set of talks, run the same command with <code>presentation-sanity</code> in place of <code>document-sanity</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="flow-h">
+      <h2 id="flow-h">What goes in, what comes out</h2>
+      <p class="intro">You write plain text that diffs well. The tools print it, and the prose and the numbers never drift apart, because there is only one copy of each.</p>
+
+      <div class="pkg" id="documents">
         <h3>document-sanity</h3>
-        <p class="kind">Papers, proposals, reports</p>
-        <p>One markdown source becomes a LaTeX PDF, a Word document and an interactive HTML viewer where every number opens its provenance.</p>
-        <div class="links">
-          <a class="demo" href="https://document.sanitism.dev/">See a paper and a proposal &rarr;</a>
-          <a href="https://github.com/yakaboskic/document-sanity">Tool</a>
-          <a href="https://github.com/yakaboskic/document-sanity-template">Template</a>
+        <div class="prose">
+          <p>For papers, proposals and reports. Markdown and one <code>manifest.yaml</code> become LaTeX, a PDF, a Word document from your own template, and an interactive HTML page where every number opens its provenance.</p>
         </div>
-      </article>
-      <article class="tool">
+        <div class="sheet">
+          <img class="figure" src="figures/document-pipeline.svg" width="971" height="486" loading="lazy"
+               alt="What you write: manifest.yaml, docs/*.md, figures, tables and refs.bib, and templates. One document-sanity check builds every target. What your readers get: LaTeX, PDF, Word, and interactive HTML where 12,453 traces back to data/qc.csv and scripts/qc.py.">
+        </div>
+        <p class="scroll-hint">Scroll the figure sideways to see all of it.</p>
+        <div class="shots">
+          <figure class="shot">
+            <img src="shots/doc-viewer.jpg" width="1600" height="762" loading="lazy"
+                 alt="The starter manuscript in the interactive HTML viewer: a contents sidebar, the title and authors, and an abstract whose numbers 1,247 and 0.87 are marked as clickable.">
+            <figcaption>The starter manuscript as interactive HTML. Each marked value opens the file, command and date it came from.</figcaption>
+          </figure>
+        </div>
+        <div class="links">
+          <a href="https://document.sanitism.dev/manuscript/">Open the paper</a>
+          <a href="https://document.sanitism.dev/manuscript/manuscript.pdf">Its PDF</a>
+          <a href="https://document.sanitism.dev/manuscript/manuscript.docx">Its Word file</a>
+          <a href="https://document.sanitism.dev/proposal/">A proposal</a>
+          <a href="https://github.com/yakaboskic/document-sanity">The tool</a>
+        </div>
+      </div>
+
+      <div class="pkg" id="presentations">
         <h3>presentation-sanity</h3>
-        <p class="kind">Talks and blog posts</p>
-        <p>One manifest feeds Slidev decks, VitePress posts and PowerPoint with playable manim scenes. A new version of a talk is a folder.</p>
-        <div class="links">
-          <a class="demo" href="https://presentation.sanitism.dev/">See a deck and its blog post &rarr;</a>
-          <a href="https://github.com/yakaboskic/presentation-sanity">Tool</a>
-          <a href="https://github.com/yakaboskic/presentation-sanity-template">Template</a>
+        <div class="prose">
+          <p>For talks, and the blog post that goes with each one. A project holds every talk you give about it; a new version of a talk is a new folder, and all of them share the same numbers, figures and manim scenes.</p>
         </div>
-      </article>
-    </div>
-  </section>
+        <div class="sheet">
+          <img class="figure" src="figures/presentation-pipeline.svg" width="971" height="454" loading="lazy"
+               alt="What you write: manifest.yaml, presentations/kickoff/v2 with slides.md and blog.md, scenes/*.py for manim, and shared components. presentation-sanity build renders scenes and figures once. What your audience gets: a Slidev deck, a blog post, and PowerPoint with the manim videos still playing.">
+        </div>
+        <p class="scroll-hint">Scroll the figure sideways to see all of it.</p>
+        <div class="shots two">
+          <figure class="shot">
+            <img src="shots/deck.jpg" width="1600" height="900" loading="lazy"
+                 alt="The example deck's title slide: Every number in this talk knows where it came from. This deck reports 12,453 participants. Click that number.">
+            <figcaption>The deck, presented from the browser.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="shots/blog.jpg" width="1600" height="752" loading="lazy"
+                 alt="The example blog post: Every number should know where it came from, with the same 12,453 participants marked as a clickable value.">
+            <figcaption>Its blog post, reading the same numbers.</figcaption>
+          </figure>
+        </div>
+        <div class="links">
+          <a href="https://presentation.sanitism.dev/example/slides/">Open the deck</a>
+          <a href="https://presentation.sanitism.dev/example/blog/">Read the post</a>
+          <a href="https://github.com/yakaboskic/presentation-sanity">The tool</a>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>The sanitistic method</h2>
-    <ol class="rules">
-      <li><div>One manifest. Everything else is generated.<small>Configuration lives in one file; outputs are build products you never hand-edit.</small></div></li>
-      <li><div>Every number has a source.<small>Values carry the file and command that produced them, and the reader can click through.</small></div></li>
-      <li><div>Versions are folders. Obviously.<small>Not branches, not copies of the repo, not <code>final_v3_REAL.docx</code>.</small></div></li>
-      <li><div>One repo per obsession.<small>Papers, proposals and talks about the same project share their figures and numbers.</small></div></li>
-      <li><div>Same input, same output.<small>Builds are deterministic, so a rebuild never surprises your co-authors.</small></div></li>
-    </ol>
-  </section>
+    <section aria-labelledby="rules-h">
+      <h2 id="rules-h">House rules</h2>
+      <p class="intro">Written the way everything else is: once, in YAML.</p>
+      <div class="grid-paper">
+<pre class="rules"><span class="c"># sanitism.yaml</span>
+<span class="k">principles:</span>
+  <span class="k">one_manifest:</span> everything else is generated, never hand-edited
+  <span class="k">every_number_has_a_source:</span> the file, command and date travel with the value
+  <span class="k">versions_are_folders:</span> not branches, and not final_v3_REAL.docx
+  <span class="k">one_repo_per_obsession:</span> papers, proposals and talks share figures and numbers
+  <span class="k">same_input_same_output:</span> a rebuild never surprises your co-authors</pre>
+      </div>
+    </section>
 
-  <section>
-    <h2>Start one</h2>
-    <div class="start">
-      <p>Without git: one command copies the template into a new folder (needs <a href="https://docs.astral.sh/uv/">uv</a>).</p>
-      <p class="cmd-label">Papers and proposals</p>
-<pre class="cmd">uvx --from git+https://github.com/yakaboskic/document-sanity \
-    document-sanity init my-paper</pre>
-      <p class="cmd-label">Talks and blog posts</p>
-<pre class="cmd">uvx --from git+https://github.com/yakaboskic/presentation-sanity \
-    presentation-sanity init my-talks</pre>
-      <p>With git: open a template and click <strong>Use this template</strong> &mdash; <a href="https://github.com/yakaboskic/document-sanity-template">for documents</a> or <a href="https://github.com/yakaboskic/presentation-sanity-template">for presentations</a>.</p>
-    </div>
-  </section>
+    <section aria-labelledby="agent-h">
+      <h2 id="agent-h">Your agent knows the rules too</h2>
+      <p class="intro"><code>init</code> installs a skill for Claude Code and other coding agents, so you can ask for the work instead of looking up flags.</p>
+      <ul class="asks">
+        <li><code>/document-sanity onboard</code><span>Turn a folder of Word files, PDFs and CSVs into a new document.</span></li>
+        <li><code>/document-sanity check</code><span>Build every output and catch broken references before you share.</span></li>
+        <li><code>/presentation-sanity new</code><span>Start the next version of a talk as a new folder.</span></li>
+        <li><code>/presentation-sanity deploy</code><span>Publish to GitHub Pages, after confirming the work is meant to be public.</span></li>
+      </ul>
+    </section>
+  </main>
 
   <footer>
-    <span>Sanitism &middot; MIT licensed</span>
-    <span><a href="https://github.com/yakaboskic">github.com/yakaboskic</a></span>
+    <p>document-sanity v0.2.1 passes <button class="num" type="button" data-label="passing tests" data-source="yakaboskic/document-sanity@ab40b6c" data-command="uv run pytest" data-updated="2026-10-18">154</button> tests and presentation-sanity v0.4.2 passes <button class="num" type="button" data-label="passing tests (1 skipped)" data-source="yakaboskic/presentation-sanity@89fa87d" data-command="uv run pytest" data-updated="2026-10-18">76</button>. Click a number for its source.</p>
+    <p>MIT licensed. <a href="https://github.com/yakaboskic/sanitism">This page's source</a>.</p>
   </footer>
-
 </div>
+
+<div class="prov" id="prov" role="dialog" aria-label="Where this number came from" hidden></div>
+
+<script>
+  // The reel: honour reduced motion, and give a pause control.
+  (function () {
+    var video = document.getElementById("reel");
+    var toggle = document.getElementById("reel-toggle");
+    if (!video || !toggle) return;
+    function sync() { toggle.textContent = video.paused ? "Play" : "Pause"; }
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { video.removeAttribute("autoplay"); video.pause(); }
+    toggle.addEventListener("click", function () {
+      if (video.paused) { video.play(); } else { video.pause(); }
+    });
+    video.addEventListener("play", sync);
+    video.addEventListener("pause", sync);
+    sync();
+  })();
+
+  // Numbers that know where they came from.
+  (function () {
+    var panel = document.getElementById("prov");
+    var open = null;
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function close() {
+      if (!open) return;
+      open.setAttribute("aria-expanded", "false");
+      panel.hidden = true;
+      open = null;
+    }
+    function show(btn) {
+      var d = btn.dataset;
+      panel.innerHTML = "<dl>" +
+        "<dt>value</dt><dd>" + esc(btn.textContent) + " " + esc(d.label || "") + "</dd>" +
+        "<dt>source</dt><dd>" + esc(d.source) + "</dd>" +
+        "<dt>command</dt><dd>" + esc(d.command) + "</dd>" +
+        "<dt>updated</dt><dd>" + esc(d.updated) + "</dd></dl>";
+      panel.hidden = false;
+      var r = btn.getBoundingClientRect();
+      var left = Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - panel.offsetWidth - 16);
+      panel.style.left = Math.max(16, left) + "px";
+      panel.style.top = (window.scrollY + r.bottom + 8) + "px";
+      btn.setAttribute("aria-expanded", "true");
+      open = btn;
+    }
+    document.querySelectorAll("button.num").forEach(function (btn) {
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-controls", "prov");
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (open === btn) { close(); return; }
+        close();
+        show(btn);
+      });
+    });
+    document.addEventListener("click", function (e) { if (!panel.contains(e.target)) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) { var b = open; close(); b.focus(); } });
+    window.addEventListener("resize", close);
+  })();
+</script>
 </body>
 </html>

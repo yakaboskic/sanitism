@@ -1,0 +1,63 @@
+<mxfile host="drawio">
+  <diagram id="two-ways-in" name="two ways in">
+    <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="tpl" value="a template repo" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="138" width="240" height="124" as="geometry"/>
+        </mxCell>
+        <mxCell id="tpld" value="document-sanity-template&#xa;presentation-sanity-template" style="text;html=0;fontFamily=Menlo, Consolas, monospace;fontSize=12;fontColor=#172033;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="172" width="220" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="tpld2" value="starters, styles, an example" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="220" width="220" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="git" value="Use this template" style="rounded=1;arcSize=20;html=0;fillColor=#2563a8;strokeColor=none;fontFamily=Georgia;fontSize=16;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="gitd" value="on GitHub. The project gets a repo:&#xa;history, branches, pull requests" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="380" y="92" width="270" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cli" value="uvx … init my-paper" style="rounded=1;arcSize=14;html=0;fillColor=#172033;strokeColor=none;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="380" y="270" width="230" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="clid" value="in a terminal. A plain folder, no git;&#xa;add --git when you want history" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="380" y="322" width="270" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="proj" value="the same project" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="96" width="276" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="projtree" value="my-paper/&#xa;&#xa0;&#xa0;pyproject.toml&#xa;&#xa0;&#xa0;src/manuscript/&#xa;&#xa0;&#xa0;&#xa0;&#xa0;manifest.yaml&#xa;&#xa0;&#xa0;&#xa0;&#xa0;docs/*.md&#xa;&#xa0;&#xa0;templates/&#xa;&#xa0;&#xa0;.claude/skills/" style="text;html=0;fontFamily=Menlo, Consolas, monospace;fontSize=13;fontColor=#172033;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="734" y="132" width="160" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="projn1" value="pinned release" style="text;html=0;fontFamily=Georgia;fontSize=12;fontStyle=2;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="888" y="150" width="100" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="projn2" value="the agent skill" style="text;html=0;fontFamily=Georgia;fontSize=12;fontStyle=2;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="888" y="229" width="100" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="projn3" value="builds the same either way" style="text;html=0;fontFamily=Georgia;fontSize=13;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="734" y="262" width="250" height="22" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="html=0;edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="tpl" target="git">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="html=0;edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;endFill=1;endSize=7;strokeColor=#172033;strokeWidth=1.6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="tpl" target="cli">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="html=0;edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.18;entryDx=0;entryDy=0;" edge="1" parent="1" source="git" target="proj">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="html=0;edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;endFill=1;endSize=7;strokeColor=#172033;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.82;entryDx=0;entryDy=0;" edge="1" parent="1" source="cli" target="proj">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

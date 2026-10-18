@@ -1,0 +1,95 @@
+<mxfile host="drawio">
+  <diagram id="presentation-pipeline" name="presentation-sanity">
+    <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="h-in" value="What you write" style="text;html=0;fontFamily=Georgia;fontSize=19;fontStyle=1;fontColor=#172033;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="300" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="h-out" value="What your audience gets" style="text;html=0;fontFamily=Georgia;fontSize=19;fontStyle=1;fontColor=#172033;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="660" y="10" width="300" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="in1" value="manifest.yaml" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="52" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in1d" value="numbers, scenes, figures and&#xa;references shared by every talk" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="82" width="280" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="in2" value="presentations/kickoff/v2/" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="146" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in2d" value="slides.md and blog.md for one talk;&#xa;the next version is a new folder" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="176" width="280" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="in3" value="scenes/*.py" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in3d" value="manim animations, rendered once&#xa;and played everywhere" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="270" width="280" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="in4" value="shared/components/" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="334" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in4d" value="&lt;DataValue&gt; and &lt;ManimFigure&gt;,&#xa;the same in the deck and the post" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="364" width="280" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="build" value="presentation-sanity&#xa;build" style="rounded=1;arcSize=14;html=0;fillColor=#172033;strokeColor=none;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="398" y="193" width="214" height="74" as="geometry"/>
+        </mxCell>
+        <mxCell id="buildd" value="scenes and figures rendered once" style="text;html=0;fontFamily=Georgia;fontSize=13;fontStyle=2;fontColor=#4f5a6d;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="388" y="274" width="230" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="out1" value="Slidev deck" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="52" width="300" height="96" as="geometry"/>
+        </mxCell>
+        <mxCell id="out1d" value="presented from the browser,&#xa;or exported to PDF" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="674" y="86" width="280" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="out2" value="Blog post" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="182" width="300" height="96" as="geometry"/>
+        </mxCell>
+        <mxCell id="out2d" value="a VitePress page that cites the&#xa;same numbers in prose" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="674" y="216" width="280" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="out3" value="PowerPoint" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="312" width="300" height="102" as="geometry"/>
+        </mxCell>
+        <mxCell id="out3d" value="for the conference laptop, with the&#xa;manim videos still playing" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="674" y="346" width="280" height="44" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" edge="1" parent="1" source="in1" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" edge="1" parent="1" source="in2" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.6;entryDx=0;entryDy=0;" edge="1" parent="1" source="in3" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" edge="1" parent="1" source="in4" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="out1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="out2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="out3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

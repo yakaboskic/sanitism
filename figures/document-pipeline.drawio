@@ -1,0 +1,100 @@
+<mxfile host="drawio">
+  <diagram id="document-pipeline" name="document-sanity">
+    <mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" math="0" shadow="0" background="#ffffff">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="h-in" value="What you write" style="text;html=0;fontFamily=Georgia;fontSize=19;fontStyle=1;fontColor=#172033;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="300" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="h-out" value="What your readers get" style="text;html=0;fontFamily=Georgia;fontSize=19;fontStyle=1;fontColor=#172033;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="660" y="10" width="300" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="in1" value="manifest.yaml" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="52" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in1d" value="title, authors, section order,&#xa;and every number with its source" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="82" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="in2" value="docs/*.md" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="146" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in2d" value="sections in Markdown, with LaTeX&#xa;blocks where it counts" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="176" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="in3" value="figures/  tables/  refs.bib" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in3d" value="images, CSV tables and BibTeX,&#xa;stored once for every output" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="270" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="in4" value="templates/" style="rounded=1;arcSize=8;html=0;fillColor=#eef2f7;strokeColor=#c6d0de;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="334" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="in4d" value="article.tex and article.docx:&#xa;the house style, kept apart" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="54" y="364" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="out1" value="LaTeX" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="52" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="out1d" value="a clean main.tex for the journal&#xa;or Overleaf" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="674" y="84" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="out2" value="PDF" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="146" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="out2d" value="compiled from that LaTeX with&#xa;your class and bib style" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="674" y="178" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="out3" value="Word" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="240" width="300" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="out3d" value="from your .docx template, for&#xa;co-authors who live in Word" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="674" y="272" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="out4" value="Interactive HTML" style="rounded=1;arcSize=6;html=0;fillColor=#ffffff;strokeColor=#172033;strokeWidth=1.5;fontFamily=Georgia;fontSize=18;fontStyle=1;fontColor=#172033;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="660" y="334" width="300" height="112" as="geometry"/>
+        </mxCell>
+        <mxCell id="out4d" value="click any number to see the file&#xa;and command it came from" style="text;html=0;fontFamily=Georgia;fontSize=14;fontColor=#4f5a6d;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="674" y="366" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="out4hl" value="12,453" style="rounded=0;html=0;fillColor=#ffe14d;strokeColor=none;fontFamily=Georgia;fontSize=14;fontStyle=1;fontColor=#172033;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="674" y="412" width="58" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="out4trace" value="&#x2190; data/qc.csv, scripts/qc.py" style="text;html=0;fontFamily=Menlo, Consolas, monospace;fontSize=12;fontColor=#2563a8;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="738" y="412" width="220" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="build" value="document-sanity&#xa;check" style="rounded=1;arcSize=14;html=0;fillColor=#172033;strokeColor=none;fontFamily=Menlo, Consolas, monospace;fontSize=15;fontStyle=1;fontColor=#ffffff;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="410" y="196" width="186" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="buildd" value="one build, every target" style="text;html=0;fontFamily=Georgia;fontSize=13;fontStyle=2;fontColor=#4f5a6d;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="398" y="284" width="210" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" edge="1" parent="1" source="in1" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" edge="1" parent="1" source="in2" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.6;entryDx=0;entryDy=0;" edge="1" parent="1" source="in3" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" edge="1" parent="1" source="in4" target="build">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f1" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="out1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f2" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="out2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f3" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.6;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="out3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="f4" style="html=0;endArrow=block;endFill=1;endSize=7;strokeColor=#2563a8;strokeWidth=1.6;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="build" target="out4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

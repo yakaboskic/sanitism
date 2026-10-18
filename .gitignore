@@ -1,0 +1,6 @@
+
+# manim render cache
+media/videos/
+media/images/
+media/texts/
+__pycache__/

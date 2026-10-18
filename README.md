@@ -1,9 +1,8 @@
 # sanitism
 
 Landing page for [sanitism.dev](https://sanitism.dev), the home of
-[document-sanity](https://github.com/yakaboskic/document-sanity),
-[presentation-sanity](https://github.com/yakaboskic/presentation-sanity) and
-[meta-sanity](https://github.com/yakaboskic/meta-sanity).
+[document-sanity](https://github.com/yakaboskic/document-sanity) and
+[presentation-sanity](https://github.com/yakaboskic/presentation-sanity).
 
 Built for autists to communicate their work, sanely.
 

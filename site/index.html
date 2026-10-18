@@ -29,7 +29,7 @@
     --canvas-muted: #8d9ab0;
     --serif: "Newsreader", "Iowan Old Style", Charter, Georgia, serif;
     --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
-    --measure: 40rem;
+    --measure: 46rem;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -161,7 +161,7 @@
     .glitter { -webkit-text-fill-color: currentColor; color: CanvasText; background: none; filter: none; }
     .sparkle { display: none; }
   }
-  .lede { font-size: 1.32rem; line-height: 1.5; color: var(--muted); max-width: 34rem; margin: 0 0 30px; }
+  .lede { font-size: 1.32rem; line-height: 1.5; color: var(--muted); max-width: 54rem; margin: 0 0 30px; text-wrap: pretty; }
   .lede strong { color: var(--ink); font-weight: 500; }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
   .btn {
@@ -218,7 +218,7 @@
   .ways { display: grid; gap: 40px; margin-top: 40px; }
   @media (min-width: 900px) { .ways { grid-template-columns: 1fr 1fr; gap: 48px; } }
   .ways > div { min-width: 0; }
-  .ways p { margin: 0 0 18px; max-width: 34rem; }
+  .ways p { margin: 0 0 18px; max-width: 40rem; }
 
   /* inside: the terminal and the house rules */
   .term {
@@ -282,22 +282,76 @@
     border-radius: 2px;
   }
   .num:hover, .num[aria-expanded="true"] { box-shadow: inset 0 -2px 0 #172033; }
-  .prov {
-    position: absolute;
-    z-index: 10;
-    max-width: min(26rem, calc(100vw - 32px));
-    background: var(--sheet);
-    color: #172033;
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--marker);
-    border-radius: 8px;
-    padding: 12px 14px;
-    font: 400 0.8rem/1.55 var(--mono);
-    box-shadow: 0 10px 30px rgba(16, 21, 31, 0.18);
+  /* The provenance sheet: the same panel the decks and blogs use */
+  .prov-backdrop {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(0, 0, 0, 0.18);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.2s ease-out, visibility 0s linear 0.2s;
+    cursor: pointer;
   }
-  .prov dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; }
-  .prov dt { color: #566175; }
-  .prov dd { margin: 0; overflow-wrap: anywhere; }
+  .prov-panel {
+    --p-border: rgba(0, 0, 0, 0.10);
+    --p-muted: rgba(0, 0, 0, 0.55);
+    --p-fg: #0f172a;
+    --p-bg: #ffffff;
+    --p-card-bg: #ffffff;
+    --p-chip-bg: rgba(0, 0, 0, 0.05);
+    --p-blue: 96, 165, 250;
+    --p-amber: 245, 158, 11;
+    --p-green: 22, 163, 74;
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 1000;
+    width: min(420px, 90vw);
+    overflow-y: auto;
+    padding: 1.6rem 1.6rem 1.4rem;
+    background: var(--p-bg);
+    color: var(--p-fg);
+    font: 400 0.9rem/1.5 var(--serif);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.08), -1px 0 0 rgba(0, 0, 0, 0.05);
+    transform: translateX(100%); opacity: 0; visibility: hidden;
+    transition: transform 0.24s cubic-bezier(0.32, 0.72, 0.24, 1), opacity 0.24s ease-out, visibility 0s linear 0.24s;
+  }
+  body.prov-open .prov-backdrop { opacity: 1; visibility: visible; transition: opacity 0.2s ease-out; }
+  body.prov-open .prov-panel { transform: none; opacity: 1; visibility: visible; transition: transform 0.24s cubic-bezier(0.32, 0.72, 0.24, 1), opacity 0.24s ease-out; }
+  .prov-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 0.7rem; border-bottom: 1px solid var(--p-border);
+  }
+  .prov-title { margin: 0; font: 600 0.72rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--p-muted); }
+  .prov-close {
+    background: transparent; border: 0; cursor: pointer;
+    font: 400 1.4rem/1 var(--serif); color: var(--p-muted);
+    padding: 0.05rem 0.45rem; border-radius: 4px;
+  }
+  .prov-close:hover { color: var(--p-fg); background: var(--p-chip-bg); }
+  .prov-description { font-size: 0.95rem; color: var(--p-muted); margin: 0 0 1.1rem; }
+  .prov-graph { display: flex; flex-direction: column; gap: 0.2rem; }
+  .prov-node { border: 1px solid var(--p-border); border-radius: 0.5rem; padding: 0.6rem 0.75rem; background: var(--p-card-bg); }
+  .prov-label { display: block; font: 600 0.62rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--p-muted); margin-bottom: 0.3rem; }
+  .prov-node ul { list-style: none; padding: 0; margin: 0; }
+  .prov-node li, .prov-command { font: 400 0.78rem/1.5 var(--mono); overflow-wrap: anywhere; }
+  .prov-node li + li { border-top: 1px dashed var(--p-border); margin-top: 0.25rem; padding-top: 0.3rem; }
+  .prov-node.inputs { background: rgba(var(--p-blue), 0.08); border-color: rgba(var(--p-blue), 0.32); }
+  .prov-node.command { background: rgba(var(--p-amber), 0.08); border-color: rgba(var(--p-amber), 0.32); }
+  .prov-node.output { background: rgba(var(--p-green), 0.08); border-color: rgba(var(--p-green), 0.40); }
+  .prov-arrow { display: flex; justify-content: center; color: var(--p-muted); font-size: 1.1rem; line-height: 1; height: 1.1rem; }
+  .prov-name { font: 600 0.85rem/1.4 var(--mono); }
+  .prov-value { display: inline-block; margin-left: 0.55rem; padding: 0.05rem 0.45rem; background: var(--p-chip-bg); border-radius: 0.25rem; font: 400 0.85rem/1.4 var(--mono); font-variant-numeric: tabular-nums; }
+  .prov-updated { font: 400 0.72rem/1.4 var(--mono); color: var(--p-muted); text-align: right; margin: 1rem 0 0; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .prov-panel {
+      --p-border: rgba(255, 255, 255, 0.10);
+      --p-muted: rgba(255, 255, 255, 0.55);
+      --p-fg: rgba(255, 255, 255, 0.92);
+      --p-bg: #11161c;
+      --p-card-bg: #181f27;
+      --p-chip-bg: rgba(255, 255, 255, 0.06);
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5), -1px 0 0 rgba(255, 255, 255, 0.06);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prov-panel, .prov-backdrop, body.prov-open .prov-panel, body.prov-open .prov-backdrop { transition: none; }
+  }
 
   footer {
     margin-top: 96px;
@@ -391,7 +445,7 @@
     cd my-paper
     uv sync                        <span class="c"># commit the uv.lock it writes</span>
     uv run document-sanity check   <span class="c"># every target, before you share</span></pre>
-          <p class="note">That run wrote <button class="num" type="button" data-label="files written by init" data-source="init's own summary line" data-command="uvx --from git+https://github.com/yakaboskic/document-sanity document-sanity init my-paper" data-updated="2026-10-18">59</button> files. For a set of talks, run the same command with <code>presentation-sanity</code> in place of <code>document-sanity</code>.</p>
+          <p class="note">That run wrote <button class="num" type="button" data-name="files_written" data-description="Files init wrote for a new paper project, with both starters and the agent skill." data-inputs="document-sanity v0.2.1|document-sanity-template@63537ec" data-command="uvx --from git+https://github.com/yakaboskic/document-sanity document-sanity init my-paper" data-updated="2026-10-18">59</button> files. For a set of talks, run the same command with <code>presentation-sanity</code> in place of <code>document-sanity</code>.</p>
         </div>
       </div>
     </section>
@@ -483,12 +537,21 @@
   </main>
 
   <footer>
-    <p>document-sanity v0.2.1 passes <button class="num" type="button" data-label="passing tests" data-source="yakaboskic/document-sanity@ab40b6c" data-command="uv run pytest" data-updated="2026-10-18">154</button> tests and presentation-sanity v0.4.2 passes <button class="num" type="button" data-label="passing tests (1 skipped)" data-source="yakaboskic/presentation-sanity@89fa87d" data-command="uv run pytest" data-updated="2026-10-18">76</button>. Click a number for its source.</p>
+    <p>document-sanity v0.2.1 passes <button class="num" type="button" data-name="tests_passed" data-description="document-sanity's test suite at the v0.2.1 release." data-inputs="yakaboskic/document-sanity@ab40b6c|tests/*.py" data-command="uv run pytest" data-updated="2026-10-18">154</button> tests and presentation-sanity v0.4.2 passes <button class="num" type="button" data-name="tests_passed" data-description="presentation-sanity's test suite at the v0.4.2 release. One more test is skipped: it needs the release tag to exist first." data-inputs="yakaboskic/presentation-sanity@89fa87d|tests/*.py" data-command="uv run pytest" data-updated="2026-10-18">76</button>. Click a number for its source.</p>
     <p>MIT licensed. <a href="https://github.com/yakaboskic/sanitism">This page's source</a>.</p>
   </footer>
 </div>
 
-<div class="prov" id="prov" role="dialog" aria-label="Where this number came from" hidden></div>
+<div class="prov-backdrop" id="prov-backdrop"></div>
+<aside class="prov-panel" id="prov" role="dialog" aria-modal="true" aria-labelledby="prov-title" tabindex="-1">
+  <header class="prov-head">
+    <h2 class="prov-title" id="prov-title">Provenance</h2>
+    <button type="button" class="prov-close" id="prov-close" aria-label="Close (Esc)" title="Close (Esc)">×</button>
+  </header>
+  <p class="prov-description" id="prov-description"></p>
+  <div class="prov-graph" id="prov-graph"></div>
+  <p class="prov-updated" id="prov-updated"></p>
+</aside>
 
 <script>
   // The reel: honour reduced motion, and give a pause control.
@@ -517,45 +580,86 @@
     });
   })();
 
-  // Numbers that know where they came from.
+  // Numbers that know where they came from: the provenance sheet.
   (function () {
     var panel = document.getElementById("prov");
-    var open = null;
-    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-    function close() {
-      if (!open) return;
-      open.setAttribute("aria-expanded", "false");
-      panel.hidden = true;
-      open = null;
+    var backdrop = document.getElementById("prov-backdrop");
+    var closeBtn = document.getElementById("prov-close");
+    var graph = document.getElementById("prov-graph");
+    var desc = document.getElementById("prov-description");
+    var updated = document.getElementById("prov-updated");
+    var opener = null;
+    function node(kind, label, body) {
+      var el = document.createElement("div");
+      el.className = "prov-node " + kind;
+      var l = document.createElement("span");
+      l.className = "prov-label";
+      l.textContent = label;
+      el.appendChild(l);
+      el.appendChild(body);
+      return el;
     }
-    function show(btn) {
+    function arrow() {
+      var a = document.createElement("div");
+      a.className = "prov-arrow";
+      a.setAttribute("aria-hidden", "true");
+      a.textContent = "↓";
+      return a;
+    }
+    function fill(btn) {
       var d = btn.dataset;
-      panel.innerHTML = "<dl>" +
-        "<dt>value</dt><dd>" + esc(btn.textContent) + " " + esc(d.label || "") + "</dd>" +
-        "<dt>source</dt><dd>" + esc(d.source) + "</dd>" +
-        "<dt>command</dt><dd>" + esc(d.command) + "</dd>" +
-        "<dt>updated</dt><dd>" + esc(d.updated) + "</dd></dl>";
-      panel.hidden = false;
-      var r = btn.getBoundingClientRect();
-      var left = Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - panel.offsetWidth - 16);
-      panel.style.left = Math.max(16, left) + "px";
-      panel.style.top = (window.scrollY + r.bottom + 8) + "px";
+      desc.textContent = d.description || "";
+      desc.hidden = !d.description;
+      graph.textContent = "";
+      var inputs = (d.inputs || "").split("|").filter(Boolean);
+      if (inputs.length) {
+        var ul = document.createElement("ul");
+        inputs.forEach(function (path) { var li = document.createElement("li"); li.textContent = path; ul.appendChild(li); });
+        graph.appendChild(node("inputs", inputs.length > 1 ? "inputs" : "source", ul));
+        graph.appendChild(arrow());
+      }
+      if (d.command) {
+        var c = document.createElement("div");
+        c.className = "prov-command";
+        c.textContent = d.command;
+        graph.appendChild(node("command", "command", c));
+        graph.appendChild(arrow());
+      }
+      var out = document.createElement("div");
+      var name = document.createElement("span");
+      name.className = "prov-name";
+      name.textContent = d.name || "value";
+      var value = document.createElement("span");
+      value.className = "prov-value";
+      value.textContent = btn.textContent.trim();
+      out.appendChild(name);
+      out.appendChild(value);
+      graph.appendChild(node("output", "variable", out));
+      updated.textContent = d.updated ? "updated " + d.updated : "";
+    }
+    function open(btn) {
+      if (opener) opener.setAttribute("aria-expanded", "false");
+      fill(btn);
+      opener = btn;
       btn.setAttribute("aria-expanded", "true");
-      open = btn;
+      document.body.classList.add("prov-open");
+      closeBtn.focus({ preventScroll: true });
+    }
+    function close() {
+      if (!opener) return;
+      document.body.classList.remove("prov-open");
+      opener.setAttribute("aria-expanded", "false");
+      opener.focus({ preventScroll: true });
+      opener = null;
     }
     document.querySelectorAll("button.num").forEach(function (btn) {
       btn.setAttribute("aria-expanded", "false");
       btn.setAttribute("aria-controls", "prov");
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        if (open === btn) { close(); return; }
-        close();
-        show(btn);
-      });
+      btn.addEventListener("click", function () { if (opener === btn) { close(); } else { open(btn); } });
     });
-    document.addEventListener("click", function (e) { if (!panel.contains(e.target)) close(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) { var b = open; close(); b.focus(); } });
-    window.addEventListener("resize", close);
+    closeBtn.addEventListener("click", close);
+    backdrop.addEventListener("click", close);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && opener) { e.preventDefault(); close(); } });
   })();
 </script>
 </body>

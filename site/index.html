@@ -433,11 +433,10 @@
         <div>
           <h3>Just give me a folder</h3>
           <p>No repo, no history, nothing to fork. One command copies the template into a new folder, so you can start writing. Add <code>--git</code> if you change your mind. It needs <a href="https://docs.astral.sh/uv/">uv</a>.</p>
-<pre class="term" aria-label="Terminal session"><span class="p">$ </span>uvx --from git+https://github.com/yakaboskic/document-sanity \
-    document-sanity init my-paper
+<pre class="term" aria-label="Terminal session"><span class="p">$ </span>uvx document-sanity init my-paper
 
-  <span class="ok">→</span> my-paper  (from document-sanity-template@63537ec)
-    59 files written
+  <span class="ok">→</span> my-paper  (from document-sanity-template@be2c124)
+    58 files written
     documents: src/manuscript/, src/proposal/
     agent skill: .claude/skills/document-sanity/
 
@@ -445,7 +444,7 @@
     cd my-paper
     uv sync                        <span class="c"># commit the uv.lock it writes</span>
     uv run document-sanity check   <span class="c"># every target, before you share</span></pre>
-          <p class="note">That run wrote <button class="num" type="button" data-name="files_written" data-description="Files init wrote for a new paper project, with both starters and the agent skill." data-inputs="document-sanity v0.2.1|document-sanity-template@63537ec" data-command="uvx --from git+https://github.com/yakaboskic/document-sanity document-sanity init my-paper" data-updated="2026-10-18">59</button> files. For a set of talks, run the same command with <code>presentation-sanity</code> in place of <code>document-sanity</code>.</p>
+          <p class="note">That run wrote <button class="num" type="button" data-name="files_written" data-description="Files init wrote for a new paper project, with both starters and the agent skill." data-inputs="document-sanity 0.2.2 from PyPI|document-sanity-template@be2c124" data-command="uvx document-sanity init my-paper" data-updated="2026-10-18">58</button> files. For a set of talks, run the same command with <code>presentation-sanity</code> in place of <code>document-sanity</code>.</p>
         </div>
       </div>
     </section>
@@ -537,7 +536,7 @@
   </main>
 
   <footer>
-    <p>document-sanity v0.2.1 passes <button class="num" type="button" data-name="tests_passed" data-description="document-sanity's test suite at the v0.2.1 release." data-inputs="yakaboskic/document-sanity@ab40b6c|tests/*.py" data-command="uv run pytest" data-updated="2026-10-18">154</button> tests and presentation-sanity v0.4.2 passes <button class="num" type="button" data-name="tests_passed" data-description="presentation-sanity's test suite at the v0.4.2 release. One more test is skipped: it needs the release tag to exist first." data-inputs="yakaboskic/presentation-sanity@89fa87d|tests/*.py" data-command="uv run pytest" data-updated="2026-10-18">76</button>. Click a number for its source.</p>
+    <p>document-sanity v0.2.2 passes <button class="num" type="button" data-name="tests_passed" data-description="document-sanity's test suite at the v0.2.2 release. One more test is skipped on purpose: it covers the Word layout script that the template no longer ships." data-inputs="yakaboskic/document-sanity@4cd14f6|tests/*.py" data-command="uv run pytest" data-updated="2026-10-18">166</button> tests and presentation-sanity v0.4.3 passes <button class="num" type="button" data-name="tests_passed" data-description="presentation-sanity's test suite at the v0.4.3 release." data-inputs="yakaboskic/presentation-sanity@9427d87|tests/*.py" data-command="uv run pytest" data-updated="2026-10-18">77</button>. Click a number for its source.</p>
     <p>MIT licensed. <a href="https://github.com/yakaboskic/sanitism">This page's source</a>.</p>
   </footer>
 </div>
